@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     static void main() {
 
-        int option;
+        int option = 0;
         Scanner scanner = new Scanner(System.in);
         Service service = new Service();
 
@@ -20,8 +20,24 @@ public class Main {
                     "5. Посмотреть все контакты по группе\n" +
                     "6. Выход\n");
 
-            option = scanner.nextInt();
-            scanner.nextLine();
+            try
+            {
+                option = scanner.nextInt();
+                scanner.nextLine();
+                if (option < 1 || option > 6)
+                {
+                    throw new IllegalArgumentException("Ошибка: Введите число от 1 до 6\n");
+                }
+            }
+            catch (InputMismatchException e)
+            {
+                System.out.println("Ошибка: Введите число от 1 до 6\n");
+                scanner.nextLine();
+            }
+            catch (IllegalArgumentException e)
+            {
+                System.out.println(e.getMessage());
+            }
 
             if (option == 1)
             {
