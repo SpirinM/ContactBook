@@ -6,12 +6,13 @@ import java.util.Scanner;
 public class Main {
     static void main() {
 
-        int option = 0;
+
         Scanner scanner = new Scanner(System.in);
         Service service = new Service();
 
         while (true)
         {
+            int option = 0;
             System.out.println("--- ContactBook ---\n" +
                     "1. Добавить контакт\n" +
                     "2. Удалить контакт\n" +
@@ -95,7 +96,6 @@ public class Main {
                             System.out.println(e.getMessage());
                         }
                     }
-
                 }
                 else
                 {
@@ -110,10 +110,17 @@ public class Main {
 
             if (option == 4)
             {
-                System.out.println("Введите имя контакта:");
+                System.out.print("Введите имя контакта:");
                 String name = scanner.nextLine();
                 String contactsToRemove = service.searchContactByName(name);
                 System.out.println(contactsToRemove);
+            }
+
+            if (option == 5)
+            {
+                System.out.print("Введите название группы: ");
+                String group = scanner.nextLine();
+                System.out.println(service.getContactsByGroup(group));
             }
         }
     }
