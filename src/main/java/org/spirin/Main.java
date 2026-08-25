@@ -1,5 +1,6 @@
 package org.spirin;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -7,6 +8,7 @@ public class Main {
 
         int option;
         Scanner scanner = new Scanner(System.in);
+        Service service = new Service();
 
         while (true)
         {
@@ -20,6 +22,27 @@ public class Main {
 
             option = scanner.nextInt();
             scanner.nextLine();
+
+            if (option == 1)
+            {
+                System.out.println("Введите данные контакта:");
+                System.out.print("Имя: ");
+                String name = scanner.nextLine();
+                System.out.print("Номер телефона: ");
+                String phone = scanner.nextLine();
+                System.out.print("Группа: ");
+                String group = scanner.nextLine();
+
+                try
+                {
+                    service.addContact(name, phone, group);
+                    System.out.println("Контакт добавлен\n");
+                }
+                catch (IllegalArgumentException e)
+                {
+                    System.out.println(e.getMessage() + "\n");
+                }
+            }
         }
     }
 }
