@@ -1,7 +1,5 @@
 package org.spirin;
 
-import java.util.InputMismatchException;
-
 public class Validator {
 
     public static void contactValidator(Contact contact)

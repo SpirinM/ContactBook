@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Main {
     static void main() {
 
-
         Scanner scanner = new Scanner(System.in);
         Service service = new Service();
 
