@@ -12,6 +12,7 @@ public class Service {
 
     private Set<Contact> contactList = new LinkedHashSet<>();
     private Map<String, List<Contact>> contactGroups = new HashMap<>();
+    private static int countContactsToRemove = 0;
 
     public void addContact(String name, String phone, String group)
     {
@@ -38,6 +39,32 @@ public class Service {
     {
         Iterator<Contact> iterator = contactList.iterator();
         StringBuilder result = new StringBuilder();
+        countContactsToRemove = 0;
+        while (iterator.hasNext())
+        {
+            Contact contact = iterator.next();
+            if(contact.getName().equals(name))
+            {
+                countContactsToRemove++;
+                result.append(countContactsToRemove).append(". ");
+                result.append(contact).append("\n");
+            }
+        }
+        if (countContactsToRemove == 0)
+        {
+            return null;
+        }
+        return result.toString();
+    }
+
+    public void contactRemove(int removeNumber, String name)
+    {
+        if (removeNumber < 0 || removeNumber > countContactsToRemove)
+        {
+            throw new IllegalArgumentException("Ошибка: Введите число от 0 до " + countContactsToRemove + ".\n");
+        }
+
+        Iterator<Contact> iterator = contactList.iterator();
         int count = 0;
         while (iterator.hasNext())
         {
@@ -45,14 +72,12 @@ public class Service {
             if(contact.getName().equals(name))
             {
                 count++;
-                result.append(count).append(". ");
-                result.append(contact).append("\n");
+                if (count == removeNumber)
+                {
+                    iterator.remove();
+                    break;
+                }
             }
         }
-        if (count == 0)
-        {
-            return null;
-        }
-        return result.toString();
     }
 }
