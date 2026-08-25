@@ -1,5 +1,7 @@
 package org.spirin;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -26,12 +28,12 @@ public class Main {
                 scanner.nextLine();
                 if (option < 1 || option > 6)
                 {
-                    throw new IllegalArgumentException("Ошибка: Введите число от 1 до 6\n");
+                    throw new IllegalArgumentException("Ошибка: Введите число от 1 до 6.\n");
                 }
             }
             catch (InputMismatchException e)
             {
-                System.out.println("Ошибка: Введите число от 1 до 6\n");
+                System.out.println("Ошибка: Введите число от 1 до 6.\n");
                 scanner.nextLine();
             }
             catch (IllegalArgumentException e)
@@ -57,6 +59,49 @@ public class Main {
                 catch (IllegalArgumentException e)
                 {
                     System.out.println(e.getMessage() + "\n");
+                }
+            }
+
+            if (option == 2)
+            {
+                System.out.println("Введите имя контакта:");
+                String name = scanner.nextLine();
+                String contactsToRemove = service.searchContactByName(name);
+                if (contactsToRemove != null)
+                {
+                    System.out.println("Выберите контакт для удаления:");
+                    System.out.println("0. Выход из меню удаления контакта");
+                    System.out.println(contactsToRemove);
+
+                    while (true)
+                    {
+                        try
+                        {
+                            int removeNumber = scanner.nextInt();
+                            scanner.nextLine();
+                            if (removeNumber == 0)
+                            {
+                                break;
+                            }
+                            service.contactRemove(removeNumber, name);
+                            System.out.println("Контакт удален\n");
+                            break;
+                        }
+                        catch (InputMismatchException e)
+                        {
+                            System.out.println("Ошибка: Введите номер контакта из списка или введите \"0\" для выхода из списка меню.\n");
+                            scanner.nextLine();
+                        }
+                        catch (IllegalArgumentException e)
+                        {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+
+                }
+                else
+                {
+                    System.out.println("Контакт \"" + name + "\" не найден.\n");
                 }
             }
         }
