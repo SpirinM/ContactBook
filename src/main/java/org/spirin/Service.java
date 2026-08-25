@@ -52,7 +52,7 @@ public class Service {
         }
         if (countContactsToRemove == 0)
         {
-            return null;
+            return "Контакт \"" + name + "\" не найден.\n";
         }
         return result.toString();
     }

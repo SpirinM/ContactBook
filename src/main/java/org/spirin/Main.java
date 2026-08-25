@@ -65,7 +65,7 @@ public class Main {
                 System.out.println("Введите имя контакта:");
                 String name = scanner.nextLine();
                 String contactsToRemove = service.searchContactByName(name);
-                if (contactsToRemove != null)
+                if (!(contactsToRemove.equals("Контакт \"" + name + "\" не найден.\n")))
                 {
                     System.out.println("Выберите контакт для удаления:");
                     System.out.println("0. Выход из меню удаления контакта");
@@ -99,14 +99,21 @@ public class Main {
                 }
                 else
                 {
-                    System.out.println("Контакт \"" + name + "\" не найден.\n");
+                    System.out.println(contactsToRemove);
                 }
             }
 
             if (option == 3)
             {
-                System.out.println("--- Список контактов ----");
                 System.out.println(service.getAllContacts());
+            }
+
+            if (option == 4)
+            {
+                System.out.println("Введите имя контакта:");
+                String name = scanner.nextLine();
+                String contactsToRemove = service.searchContactByName(name);
+                System.out.println(contactsToRemove);
             }
         }
     }
