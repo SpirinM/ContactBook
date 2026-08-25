@@ -8,6 +8,13 @@ public class Contact {
     private String phone;
     private String group;
 
+    public Contact(String name, String phone, String group)
+    {
+        this.name = name;
+        this.phone = phone;
+        this.group = group;
+    }
+
     @Override
     public boolean equals(Object obj)
     {
