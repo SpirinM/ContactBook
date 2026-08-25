@@ -122,6 +122,12 @@ public class Main {
                 String group = scanner.nextLine();
                 System.out.println(service.getContactsByGroup(group));
             }
+
+            if (option == 6)
+            {
+                System.out.println("--- Завершение работы ---");
+                break;
+            }
         }
     }
 }
