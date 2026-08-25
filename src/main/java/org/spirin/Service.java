@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Service {
 
@@ -31,5 +32,27 @@ public class Service {
             contactGroups.put(group, contacts);
         }
         contacts.add(contact);
+    }
+
+    public String searchContactByName(String name)
+    {
+        Iterator<Contact> iterator = contactList.iterator();
+        StringBuilder result = new StringBuilder();
+        int count = 0;
+        while (iterator.hasNext())
+        {
+            Contact contact = iterator.next();
+            if(contact.getName().equals(name))
+            {
+                count++;
+                result.append(count).append(". ");
+                result.append(contact).append("\n");
+            }
+        }
+        if (count == 0)
+        {
+            return null;
+        }
+        return result.toString();
     }
 }
