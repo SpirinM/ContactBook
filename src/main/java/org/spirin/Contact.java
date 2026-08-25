@@ -15,6 +15,10 @@ public class Contact {
         this.group = group;
     }
 
+    public String getName() {return this.name;}
+    public String getPhone() {return this.phone;}
+    public String getGroup() {return this.group;}
+
     @Override
     public boolean equals(Object obj)
     {
