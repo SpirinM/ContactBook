@@ -1,7 +1,5 @@
 package org.spirin;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -103,6 +101,12 @@ public class Main {
                 {
                     System.out.println("Контакт \"" + name + "\" не найден.\n");
                 }
+            }
+
+            if (option == 3)
+            {
+                System.out.println("--- Список контактов ----");
+                System.out.println(service.getAllContacts());
             }
         }
     }

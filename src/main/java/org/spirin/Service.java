@@ -80,4 +80,21 @@ public class Service {
             }
         }
     }
+
+    public String getAllContacts()
+    {
+        if (contactList.isEmpty())
+        {
+            return "Список контактов пуст\n";
+        }
+
+        Iterator<Contact> iterator = contactList.iterator();
+        StringBuilder result = new StringBuilder();
+        while (iterator.hasNext())
+        {
+            Contact contact = iterator.next();
+            result.append(contact).append("\n");
+        }
+        return result.toString();
+    }
 }
